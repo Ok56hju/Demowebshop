@@ -37,7 +37,7 @@ public class TestBase {
 
     }
 
-    protected boolean isElementPresent(By xpath) {
-       return driver.findElements(By.xpath("[div:nth-child(2)>a ]")).size()>0;
+    protected boolean isElementPresent() {
+       return driver.findElements(By.cssSelector("div[class='header-links'] a[class='account']")).size()>0;
     }
 }
