@@ -26,7 +26,7 @@ public class CreateAccountTest extends TestBase{
         click(By.id("register-button"));
         click(By.cssSelector("[value='Continue']"));
         //assert Sing Out button is present
-        Assert.assertTrue(isElementPresent());
+        Assert.assertTrue(isElementPresent(By.cssSelector("div[class='header-links'] a[class='account']")));
 
     }
 

@@ -1,11 +1,8 @@
 package com.dependencies.test;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -26,18 +23,38 @@ public class TestBase {
     public void tearDown(){
         driver.quit();
     }
-    public void click(By locator){
+
+
+    public void click(By locator) {
         driver.findElement(locator).click();
     }
 
     public void type(By locator, String text) {
-        click(locator);
-        driver.findElement(locator).clear();
-        driver.findElement(locator).sendKeys(text);
-
+        if (text !=null) {
+            click(locator);
+            driver.findElement(locator).clear();
+            driver.findElement(locator).sendKeys(text);
+        }
     }
 
-    protected boolean isElementPresent() {
-       return driver.findElements(By.cssSelector("div[class='header-links'] a[class='account']")).size()>0;
+    public boolean isElementPresent(By locato) {
+       return driver.findElements(locato).size()>0;
+    }
+    public void clickOnLoginLink(){
+        click(By.cssSelector("[class='ico-login']"));
+    }
+
+    public void fillLoginRegistracionForm(User user) {
+        type(By.id("Email"), user.getEmail());
+        type(By.id("Password"), user.getPassword());
+    }
+    public void clickOnSaveButton(){
+        click(By.cssSelector("[class='button-1 login-button']"));
+    }
+    public int sizeOfContacts() {
+        if (isElementPresent(By.cssSelector("a>[class='cart-qty']"))) {
+            return driver.findElements(By.cssSelector("a>[class='cart-qty']")).size();
+        }
+        return 0;
     }
 }
