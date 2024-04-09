@@ -52,8 +52,8 @@ public class TestBase {
         click(By.cssSelector("[class='button-1 login-button']"));
     }
     public int sizeOfContacts() {
-        if (isElementPresent(By.cssSelector("a>[class='cart-qty']"))) {
-            return driver.findElements(By.cssSelector("a>[class='cart-qty']")).size();
+        if (isElementPresent(By.cssSelector("css - .ico-cart>.cart-label"))) {
+            return driver.findElements(By.cssSelector("css - .ico-cart>.cart-label")).size();
         }
         return 0;
     }

@@ -14,9 +14,9 @@ public class AddItemToCart extends TestBase {
 
     @Test
     public void fillProduductPositivTest(){
-        click(By.cssSelector("div> a[title='Show details for 14.1-inch Laptop']"));
-        click(By.id("add-to-cart-button-31"));
-        click(By.cssSelector("a>[class='cart-qty']"));
+        click(By.cssSelector(".item-box:nth-child(3) .buttons"));
+        click(By.cssSelector(".ico-cart>.cart-label"));
+
 
     }
 
