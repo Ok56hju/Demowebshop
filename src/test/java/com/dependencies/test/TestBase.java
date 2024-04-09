@@ -4,22 +4,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 
 import java.time.Duration;
 
 public class TestBase {
 
-    WebDriver driver;
+    static WebDriver driver;
 
-    @BeforeMethod
+
+    @BeforeSuite
     public void setUp(){
         driver = new ChromeDriver();
         driver.get("https://demowebshop.tricentis.com/");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
-    @AfterMethod(enabled = false)
+    @AfterSuite(enabled = false)
     public void tearDown(){
         driver.quit();
     }
@@ -51,10 +54,24 @@ public class TestBase {
     public void clickOnSaveButton(){
         click(By.cssSelector("[class='button-1 login-button']"));
     }
-    public int sizeOfContacts() {
-        if (isElementPresent(By.cssSelector("css - .ico-cart>.cart-label"))) {
-            return driver.findElements(By.cssSelector("css - .ico-cart>.cart-label")).size();
+
+    public int sizeOfCart() {
+        if (isElementPresent(By.cssSelector("[title='Show details for 14.1-inch Laptop']"))) {
+            return driver.findElements(By.cssSelector("[title='Show details for 14.1-inch Laptop']")).size();
         }
         return 0;
+    }
+
+    public void pause(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void removeContact() {
+        click(By.cssSelector("[name='removefromcart']"));
+        click(By.cssSelector("[class='button-2 update-cart-button']"));
     }
 }
