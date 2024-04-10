@@ -5,32 +5,26 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Random;
-
 public class CreateAccountTest extends TestBase{
     @BeforeMethod
-    public void ensurePrecondition(){}
-
+    public void ensurePrecondition(){
+        if (!app.isLoginLinkPresent()){
+            app.clickOnSignOutButton();
+        }
+    }
 
     @Test()
     public void createNewAccountPositiveTest(){
-        Random random = new Random();
-        int i = random.nextInt(1000)+1000;
+        int i = BaseHelper.random();
 
-        // click on Login link
-        click(By.cssSelector("[href='/register']"));
-        type(By.id("FirstName"),"Test");
-        type(By.id("LastName"),"Testing");
-        //enter email
-        type(By.id("Email"), "tested1" + i + "@gm.com");
-        //enter password
-        type(By.name("Password"), "Qwe1234$");
-        type(By.name("ConfirmPassword"), "Qwe1234$");
-        //click on Registration button
-        click(By.id("register-button"));
-        click(By.cssSelector("[value='Continue']"));
+        app.clickOnRegistrationButton();
+
+        app.fillDateToAccaontForm(i);
+
+        app.click(By.id("register-button"));
+//        click(By.cssSelector("[value='Continue']"));
         //assert Sing Out button is present
-        Assert.assertTrue(isElementPresent(By.cssSelector("div[class='header-links'] a[class='account']")));
+        Assert.assertTrue(app.isAccountPresent());
 
     }
 
