@@ -1,12 +1,11 @@
 package com.dependencies.test;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class AddItemToCart  {
+public class AddItemToCart extends TestBase {
     @BeforeMethod
     public void ensurePrecondition(){
 
@@ -22,17 +21,18 @@ public class AddItemToCart  {
     @Test
     public void fillProduductPositivTest(){
 
-        app.click(By.cssSelector(".item-box:nth-child(3) .buttons"));
+        click(ApplicationMagager.clickButtonAddToCard());
 
         int sizeBefore = app.sizeOfCart();
 
-        app.click(By.cssSelector(".ico-cart>.cart-label"));
+        click(ApplicationMagager.clickToElementShoopingCard());
 
         app.pause(1000);
 
         int sizeAfter = app.sizeOfCart();
         Assert.assertEquals(sizeAfter,sizeBefore+1);
     }
+
     @AfterMethod
     public void postCondition() {
         app.removeContact();

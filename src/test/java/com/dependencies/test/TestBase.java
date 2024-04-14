@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeSuite;
 
 public class TestBase {
 
-    protected static ApplicationManager app = new ApplicationManager();
+    protected static final ApplicationMagager app = new ApplicationMagager();
 
     @BeforeSuite
     public void setUp(){
@@ -16,5 +16,6 @@ public class TestBase {
     public void tearDown(){
         app.stop();
     }
+
 
 }

@@ -15,13 +15,13 @@ public class CreateAccountTest extends TestBase{
 
     @Test()
     public void createNewAccountPositiveTest(){
-        int i = BaseHelper.random();
+        int i = app.random();
 
         app.clickOnRegistrationButton();
 
         app.fillDateToAccaontForm(i);
 
-        app.click(By.id("register-button"));
+        click(By.id("register-button"));
 //        click(By.cssSelector("[value='Continue']"));
         //assert Sing Out button is present
         Assert.assertTrue(app.isAccountPresent());
