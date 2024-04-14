@@ -1,5 +1,7 @@
 package com.dependencies.test;
 
+import com.demowebshop.fw.ItemHelper;
+import com.demowebshop.models.User;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -9,33 +11,33 @@ public class AddItemToCart extends TestBase {
     @BeforeMethod
     public void ensurePrecondition(){
 
-        if (!app.isLoginLinkPresent()){
-            app.clickOnSignOutButton();
+        if (!app.getUser().isLoginLinkPresent()){
+            app.getUser().clickOnSignOutButton();
         }
 
-        app.clickOnLoginLink();
-        app.fillLoginForm(new User().setEmail("tested1@gm.com").setPassword("Qwe1234$"));
-        app.clickOnSaveButton();
+        app.getUser().clickOnLoginLink();
+        app.getUser().fillLoginForm(new User().setEmail("tested1@gm.com").setPassword("Qwe1234$"));
+        app.getUser().clickOnSaveButton();
     }
 
     @Test
     public void fillProduductPositivTest(){
 
-        click(ApplicationMagager.clickButtonAddToCard());
+        app.getItem().click(ItemHelper.clickButtonAddToCard());
 
-        int sizeBefore = app.sizeOfCart();
+        int sizeBefore = app.getItem().sizeOfCart();
 
-        click(ApplicationMagager.clickToElementShoopingCard());
+        app.getItem().click(ItemHelper.clickToElementShoopingCard());
 
-        app.pause(1000);
+        app.getItem().pause(1000);
 
-        int sizeAfter = app.sizeOfCart();
+        int sizeAfter = app.getItem().sizeOfCart();
         Assert.assertEquals(sizeAfter,sizeBefore+1);
     }
 
     @AfterMethod
     public void postCondition() {
-        app.removeContact();
+        app.getUser().removeContact();
     }
 
 

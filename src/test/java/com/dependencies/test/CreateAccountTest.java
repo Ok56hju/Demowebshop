@@ -8,23 +8,23 @@ import org.testng.annotations.Test;
 public class CreateAccountTest extends TestBase{
     @BeforeMethod
     public void ensurePrecondition(){
-        if (!app.isLoginLinkPresent()){
-            app.clickOnSignOutButton();
+        if (!app.getUser().isLoginLinkPresent()){
+            app.getUser().clickOnSignOutButton();
         }
     }
 
     @Test()
     public void createNewAccountPositiveTest(){
-        int i = app.random();
+        int i = app.getUser().random();
 
-        app.clickOnRegistrationButton();
+        app.getUser().clickOnRegistrationButton();
 
-        app.fillDateToAccaontForm(i);
+        app.getUser().fillDateToAccaontForm(i);
 
-        click(By.id("register-button"));
+        app.getUser().click(By.id("register-button"));
 //        click(By.cssSelector("[value='Continue']"));
         //assert Sing Out button is present
-        Assert.assertTrue(app.isAccountPresent());
+        Assert.assertTrue(app.getUser().isAccountPresent());
 
     }
 
