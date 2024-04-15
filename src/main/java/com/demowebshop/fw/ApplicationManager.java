@@ -29,7 +29,7 @@ public class ApplicationMagager  {
         if (browser.equalsIgnoreCase("edge")){
             driver = new EdgeDriver();
         }
-                
+
 
         driver = new ChromeDriver();
         driver.get("https://demowebshop.tricentis.com/");
