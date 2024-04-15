@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Regression" verbose="1">
+    <test name="Regression">
+        <classes>
+            <class name="com.dependencies.test.AddItemToCart"/>
+            <class name="com.dependencies.test.AddItemToCart">
+                <methods>
+                    <exclude name=".*remove.*"/>
+                </methods>
+            </class>
+
+          
+        </classes>
+    </test>
+
+</suite>
